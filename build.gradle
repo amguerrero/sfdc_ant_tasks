@@ -1,0 +1,29 @@
+apply plugin: 'groovy'
+
+sourceSets {
+    main {
+        groovy {
+            srcDirs = ['src/main/groovy']
+        }
+    }
+}
+
+//create a single Jar with all dependencies
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'SF Git Delta Deployment'
+            //,'Main-Class': 'sfmetadataadjuster.SFMetadataAdjuster'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile 'org.apache.ant:ant:1.9.7'
+    compile 'org.codehaus.groovy:groovy-all:2.4.7'
+}

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+   <modelVersion>4.0.0</modelVersion>
+   <groupId>me.amguerrero.salesforce</groupId>
+   <artifactId>SalesforceAntTasks</artifactId>
+   <packaging>jar</packaging>
+   <version>1.0-SNAPSHOT</version>
+   <name>Salesforce Ant Tasks</name>
+   <dependencies>
+      <dependency>
+         <groupId>org.apache.ant</groupId>
+         <artifactId>ant</artifactId>
+         <version>1.9.7</version>
+      </dependency>
+      <dependency>
+         <groupId>org.codehaus.groovy</groupId>
+         <artifactId>groovy-all</artifactId>
+         <version>2.4.7</version>
+      </dependency>
+   </dependencies>
+   <build>
+      <plugins>
+         <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-assembly-plugin</artifactId>
+            <executions>
+               <execution>
+                  <goals>
+                     <goal>attached</goal>
+                  </goals>
+                  <phase>package</phase>
+                  <configuration>
+                     <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                     </descriptorRefs>
+                     <archive>
+                        <manifest>
+                           <addClasspath>false</addClasspath>
+                        </manifest>
+                     </archive>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
+         <plugin>
+            <artifactId>maven-antrun-plugin</artifactId>
+            <executions>
+               <execution>
+                  <id>compile</id>
+                  <phase>compile</phase>
+                  <configuration>
+                     <tasks>
+                        <mkdir dir="${basedir}/src/main/groovy" />
+                        <taskdef name="groovyc" classname="org.codehaus.groovy.ant.Groovyc">
+                           <classpath refid="maven.compile.classpath" />
+                        </taskdef>
+                        <mkdir dir="${project.build.outputDirectory}" />
+                        <groovyc destdir="${project.build.outputDirectory}" srcdir="${basedir}/src/main/groovy" listfiles="true">
+                           <classpath refid="maven.compile.classpath" />
+                        </groovyc>
+                     </tasks>
+                  </configuration>
+                  <goals>
+                     <goal>run</goal>
+                  </goals>
+               </execution>
+            </executions>
+         </plugin>
+      </plugins>
+   </build>
+</project>

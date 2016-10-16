@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="SFDeltaDeployment" basedir="." default="cdn-invalidation">
+    <taskdef name="deltaDeployment" classpath="target/SalesforceAntTasks-1.0-SNAPSHOT-jar-with-dependencies.jar"
+        classname="sfanttasks.sfdeltadeployment.SFDeltaDeploymentTask" />
+    
+    <target name="delta">
+        <deltaDeployment />
+    </target>
+
+</project>
