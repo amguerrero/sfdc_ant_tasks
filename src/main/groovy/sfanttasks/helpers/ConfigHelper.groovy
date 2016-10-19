@@ -4,6 +4,11 @@ import groovy.json.JsonSlurperClassic
 
 class ConfigHelper {
 
+	static def getCleanupConfig(def cleanupConfigFile) {
+		(cleanupConfigFile) ? new JsonSlurperClassic().parse(new File(cleanupConfigFile))
+			: defaultCleanupConfig
+	}
+
 	static def getPackageConfig(def packageConfigFile) {
 		(packageConfigFile) ? new JsonSlurperClassic().parse(new File(packageConfigFile))
 			: defaultPackageConfig
@@ -13,6 +18,71 @@ class ConfigHelper {
 		(negativeConfigFile) ? new JsonSlurperClassic().parse(new File(negativeConfigFile))
 			: defaultNegativeConfig
 	}
+
+	private static final def defaultCleanupConfig = [
+		'object': [
+			'fields': [
+				'field': 'fullName',
+				'matches': '^.+__.+__.{1,3}$'
+			],
+			'validationRules': [
+				'field': 'fullName',
+				'matches': '^.+__.+__.{1,3}$'
+			],
+			'webLinks': [
+				'field': 'fullName',
+				'matches': '^.+__.+__.{1,3}$'
+			],
+			'listViews': [
+				'field': 'fullName',
+				'matches': '^.*$'
+			]
+		],
+		'profile': [
+			'applicationVisibilities': [
+				'field': 'application',
+				'matches': '^.+__.+__.{1,3}$'
+			],
+			'fieldPermissions': [
+				'field': 'field',
+				'matches': '^(.+__.+__.{1,3}\\..+|.+\\..+__.+__.{1,3})$'
+			],
+			'objectPermissions': [
+				'field': 'object',
+				'matches': '^.+__.+__.{1,3}$'
+			],
+			'recordTypeVisibilities': [
+				'field': 'recordType',
+				'matches': '^(.+__.+__.{1,3}\\..+|.+\\..+__.+__.{1,3})$'
+			],
+			'tabVisibilities': [
+				'tab': 'fullName',
+				'matches': '^.+__.+__.{1,3}$'
+			]
+		],
+		'permissionset': [
+			'applicationVisibilities': [
+				'field': 'application',
+				'matches': '^.+__.+__.{1,3}$'
+			],
+			'fieldPermissions': [
+				'field': 'field',
+				'matches': '^(.+__.+__.{1,3}\\..+|.+\\..+__.+__.{1,3})$'
+			],
+			'objectPermissions': [
+				'field': 'object',
+				'matches': '^.+__.+__.{1,3}$'
+			],
+			'recordTypeVisibilities': [
+				'field': 'recordType',
+				'matches': '^(.+__.+__.{1,3}\\..+|.+\\..+__.+__.{1,3})$'
+			],
+			'tabVisibilities': [
+				'tab': 'fullName',
+				'matches': '^.+__.+__.{1,3}$'
+			]
+		]
+	]
 
 	private static final def defaultPackageConfig = [
 		'version': '37.0',
