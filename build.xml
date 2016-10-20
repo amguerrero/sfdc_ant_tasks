@@ -22,4 +22,18 @@
 	    <metadataCleanup srcFolder="delta" />
     </target>
 
+    <!-- Using the new task definitions wiht config files -->
+    <target name="prepareDeltaDeploymentWithConfigFiles">
+        <deltaDeployment
+        	deltaFolder="delta"
+            configFile="config/packageConfig.json"
+        	previousDeployment="v.1.0.1" />
+        <addNegativePermisions
+            srcFolder="delta"
+            configFile="config/negativeConfig.json"
+            previousDeployment="v.1.0.1" />
+        <metadataCleanup
+            srcFolder="delta"
+            configFile="config/metadataCleanupConfig.json" />
+    </target>
 </project>

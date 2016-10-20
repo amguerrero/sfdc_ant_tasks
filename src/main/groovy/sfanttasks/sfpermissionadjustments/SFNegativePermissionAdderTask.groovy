@@ -14,7 +14,7 @@ import org.apache.tools.ant.Task
 class SFNegativePermissionAdderTask extends Task {
 	def srcFolder
 	def previousDeployment
-	def negativesConfigFile
+	def configFile
 
 	def srcPath
 	def negativeConfig
@@ -24,7 +24,7 @@ class SFNegativePermissionAdderTask extends Task {
 
 	void execute() {
 		srcPath = Paths.get(srcFolder)
-		negativeConfig = ConfigHelper.getNegativeConfig(negativesConfigFile)
+		negativeConfig = ConfigHelper.getNegativeConfig(configFile)
 		
 		def profilesPath = Paths.get("$srcFolder/src/profiles")
 		def permissionSetsPath = Paths.get("$srcFolder/src/permissionsets")

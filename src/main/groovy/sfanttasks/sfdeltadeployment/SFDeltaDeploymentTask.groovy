@@ -13,7 +13,7 @@ import org.apache.tools.ant.Task
 class SFDeltaDeploymentTask extends Task {
 	def deltaFolder
 	def previousDeployment
-	def packageConfigFile
+	def configFile
 
 	void execute() {
 		println "Preparing Delta Deployment file in $deltaFolder folder"
@@ -34,8 +34,8 @@ class SFDeltaDeploymentTask extends Task {
 					Files.copy(filePath, deltaPath.resolve(filePath), StandardCopyOption.REPLACE_EXISTING)
 					//println "Copying $line to $deltaFolder"
 			}
-			// Build package.xml in $deltaFolder/src using packageConfigFile if exists
-			new PackageCreator(packageConfigFile, deltaPath.resolve("src"))
+			// Build package.xml in $deltaFolder/src using configFile if exists
+			new PackageCreator(configFile, deltaPath.resolve("src"))
 					.create()
 		} catch (Exception e) {
 			throw new BuildException(e)

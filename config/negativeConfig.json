@@ -1,0 +1,42 @@
+{
+	"applicationVisibilities": {
+		"id": "application",
+		"negativeNodeTemplate": "<applicationVisibilities><application></application><default>false</default><visible>false</visible></applicationVisibilities>"
+	},
+	"classAccesses": {
+		"id": "apexClass",
+		"negativeNodeTemplate": "<classAccesses><apexClass></apexClass><enabled>false</enabled></classAccesses>"
+	},
+	"customPermissions": {
+		"id": "name",
+		"negativeNodeTemplate": "<customPermissions><enabled>false</enabled><name></name></customPermissions>"
+	},
+	"externalDataSourceAccesses": {
+		"id": "externalDataSource",
+		"negativeNodeTemplate": "<externalDataSourceAccesses><enabled>false</enabled><externalDataSource></externalDataSource></externalDataSourceAccesses>"
+	},
+	"fieldPermissions": {
+		"id": "field",
+		"negativeNodeTemplate": "<fieldPermissions><editable>false</editable><field></field><readable>false</readable></fieldPermissions>"
+	},
+	"objectPermissions": {
+		"id": "object",
+		"negativeNodeTemplate": "<objectPermissions><allowCreate>false</allowCreate><allowDelete>false</allowDelete><allowEdit>false</allowEdit><allowRead>false</allowRead><modifyAllRecords>false</modifyAllRecords><object></object><viewAllRecords>false</viewAllRecords></objectPermissions>"
+	},
+	"pageAccesses": {
+		"id": "apexPage",
+		"negativeNodeTemplate": "<pageAccesses><apexPage></apexPage><enabled>false</enabled></pageAccesses>"
+	},
+	"recordTypeVisibilities": {
+		"id": "recordType",
+		"negativeNodeTemplate": "<recordTypeVisibilities><default>false</default><recordType></recordType><visible>false</visible></recordTypeVisibilities>"
+	},
+	"tabVisibilities": {
+		"id": "tab",
+		"negativeNodeTemplate": "<tabVisibilities><tab></tab><visibility>DefaultOff</visibility></tabVisibilities>"
+	},
+	"userPermissions": {
+		"id": "name",
+		"negativeNodeTemplate": "<userPermissions><enabled>false</enabled><name></name></userPermissions>"
+	}
+}
