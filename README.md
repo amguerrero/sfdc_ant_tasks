@@ -39,7 +39,7 @@ Once we have the task defined in the build.xml, we can begin using them like thi
 </target>
 ```
 In this example, the target **deploy** will:
-1. Creates *delta/* directory and copies there only the files that changed between the commit tagged as v.1.0.1 and the HEAD of the current branch. It keeps salesforce package structure inside *delta/* directory. And generates the **delta/src/package.xml** file.
-2. Adds the permissions that were removed from between v.1.0.1 and the current branch HEAD to the profiles and permission sets in *delta/src/* as negative permissions.
-3. Cleans up all the metadata in *delta/src/*. In this case uses the configuration by default (in short removes all the mentions to 3rd party packages -managed or not- from objects, profiles and permission sets, and the list views on the objects)
-4. Finally, deploys the package we have automatically created in *delta/src/*
+  - Creates *delta/* directory and copies there only the files that changed between the commit tagged as v.1.0.1 and the HEAD of the current branch. It keeps salesforce package structure inside *delta/* directory. And generates the **delta/src/package.xml** file.
+  - Adds the permissions that were removed from between v.1.0.1 and the current branch HEAD to the profiles and permission sets in *delta/src/* as negative permissions.
+  - Cleans up all the metadata in *delta/src/*. In this case uses the configuration by default (in short removes all the mentions to 3rd party packages -managed or not- from objects, profiles and permission sets, and the list views on the objects)
+  - Finally, deploys the package we have automatically created in *delta/src/*
