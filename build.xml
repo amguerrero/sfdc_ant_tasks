@@ -1,10 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <project name="SFDeltaDeployment" basedir="." default="cdn-invalidation">
-    <taskdef name="deltaDeployment" classpath="target/SalesforceAntTasks-1.0-SNAPSHOT-jar-with-dependencies.jar"
-        classname="sfanttasks.sfdeltadeployment.SFDeltaDeploymentTask" />
+	<!-- Adding task definitions -->
+    <taskdef name="deltaDeployment"
+    	classpath="lib/SalesforceAntTasks-1.0-SNAPSHOT-jar-with-dependencies.jar"
+    	classname="sfanttasks.sfdeltadeployment.SFDeltaDeploymentTask" />
+
+    <taskdef name="addNegativePermisions"
+    	classpath="libs/SalesforceAntTasks-1.0-SNAPSHOT-jar-with-dependencies.jar"
+    	classname="sfanttasks.sfpermissionadjustments.SFNegativePermissionAdderTask" />
+
+    <taskdef name="metadataCleanup"
+    	classpath="libs/SalesforceAntTasks-1.0-SNAPSHOT-jar-with-dependencies.jar"
+    	classname="sfanttasks.sfmetadatacleanup.SFMetadataCleanupTask" />
     
-    <target name="delta">
-        <deltaDeployment />
+    <!-- Using the new task definitions -->
+    <target name="prepareDeltaDeployment">
+    	<deltaDeployment deltaFolder="delta"
+    		previousDeployment="v.1.0.1" />
+	    <addNegativePermisions srcFolder="delta"
+	    	previousDeployment="v.1.0.1" />
+	    <metadataCleanup srcFolder="delta" />
     </target>
 
 </project>
