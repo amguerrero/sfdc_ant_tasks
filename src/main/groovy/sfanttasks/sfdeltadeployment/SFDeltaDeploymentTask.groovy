@@ -14,6 +14,7 @@ class SFDeltaDeploymentTask extends Task {
 	def deltaFolder
 	def previousDeployment
 	def configFile
+	def gitBaseDir = "."
 
 	void execute() {
 		println "Preparing Delta Deployment file in $deltaFolder folder"
@@ -21,17 +22,18 @@ class SFDeltaDeploymentTask extends Task {
 		// Retrieve files that changed from $previousDeployment 
 		def deltaPath = Paths.get(deltaFolder)
 		try {
-			GitHelper.getFilesModifiedSince(previousDeployment)
+			GitHelper.withGitBaseDir(gitBaseDir).getFilesModifiedSince(previousDeployment)
 				.inputStream.eachLine { line ->
 					// Each line is a file, relative to the root of the git project
 					def filePath = Paths.get(line)
+					def gitFilePath = Paths.get("${gitBaseDir}/${line}")
 					def deltaFilePath = deltaPath.resolve(filePath)
 
 					if (!Files.exists(deltaFilePath.parent)) {
 						Files.createDirectories(deltaFilePath.parent)
 					}
 
-					Files.copy(filePath, deltaPath.resolve(filePath), StandardCopyOption.REPLACE_EXISTING)
+					Files.copy(gitFilePath, deltaFilePath, StandardCopyOption.REPLACE_EXISTING)
 					//println "Copying $line to $deltaFolder"
 			}
 			// Build package.xml in $deltaFolder/src using configFile if exists

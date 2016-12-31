@@ -16,8 +16,10 @@
     <!-- Using the new task definitions -->
     <target name="prepareDeltaDeployment">
     	<deltaDeployment deltaFolder="delta"
+            gitBaseDir="."
     		previousDeployment="v.1.0.1" />
 	    <addNegativePermisions srcFolder="delta"
+            gitBaseDir="."
 	    	previousDeployment="v.1.0.1" />
 	    <metadataCleanup srcFolder="delta" />
     </target>
@@ -26,10 +28,12 @@
     <target name="prepareDeltaDeploymentWithConfigFiles">
         <deltaDeployment
         	deltaFolder="delta"
+            gitBaseDir="."
             configFile="config/packageConfig.json"
         	previousDeployment="v.1.0.1" />
         <addNegativePermisions
             srcFolder="delta"
+            gitBaseDir="."
             configFile="config/negativeConfig.json"
             previousDeployment="v.1.0.1" />
         <metadataCleanup

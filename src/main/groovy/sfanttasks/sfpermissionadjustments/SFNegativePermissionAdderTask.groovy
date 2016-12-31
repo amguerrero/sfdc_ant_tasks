@@ -18,6 +18,7 @@ class SFNegativePermissionAdderTask extends Task {
 
 	def srcPath
 	def negativeConfig
+	def gitBaseDir = "."
 
 	def pool = Executors.newFixedThreadPool(15)
 	def futures = []
@@ -63,7 +64,8 @@ class SFNegativePermissionAdderTask extends Task {
 				void run() {
 					def parser = new XmlParser(false, false, false)
 					def gitFile = file.subpath(srcPath.getNameCount(), file.getNameCount())
-					def previousVersionContent = GitHelper.getPreviousVersionOf(gitFile, previousDeployment)
+					def previousVersionContent = GitHelper.withGitBaseDir(gitBaseDir)
+													.getPreviousVersionOf(gitFile, previousDeployment)
 
 					def previousXml = parser.parseText(previousVersionContent.text)
 					def previousUniqueIds = generateNodeUniqueIds(previousXml)

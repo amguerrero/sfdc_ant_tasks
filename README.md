@@ -31,18 +31,42 @@ Once we have the task defined in the build.xml, we can begin using them like thi
 ```xml
 <target name="deploy">
     <deltaDeployment deltaFolder="delta"
+        gitBaseDir="git_repository/sfdc_project"
         previousDeployment="v.1.0.1" />
     <addNegativePermisions srcFolder="delta"
+        gitBaseDir="git_repository/sfdc_project"
         previousDeployment="v.1.0.1" />
     <metadataCleanup srcFolder="delta" />
     <sf:deploy deployRoot="delta/src" ... />
 </target>
 ```
 In this example, the target **deploy**:
-  - Creates *delta/* directory and copies there only the files that changed between the commit tagged as v.1.0.1 and the HEAD of the current branch. It keeps salesforce package structure inside *delta/* directory. And generates the **delta/src/package.xml** file.
-  - Adds the permissions that were removed between v.1.0.1 and the current branch HEAD to the profiles and permission sets in *delta/src/* as negative permissions.
+  - Creates *delta/* directory and copies there only the files that changed between the commit tagged as v.1.0.1 and the HEAD of the current branch. It keeps salesforce package structure inside *delta/* directory. And generates the **delta/src/package.xml** file. The **gitBaseDir** attribute of deltaDeployment points to the root of the local git clone of the Salesforce project.
+  - Adds the permissions that were removed between v.1.0.1 and the current branch HEAD to the profiles and permission sets in *delta/src/* as negative permissions. The **gitBaseDir** attribute of deltaDeployment points to the root of the local git clone of the Salesforce project.
   - Cleans up all the metadata in *delta/src/*. In this case uses the configuration by default (in short removes all the mentions to 3rd party packages -managed or not- from objects, profiles and permission sets, and the list views on the objects)
   - Finally, deploys the package we have automatically created in *delta/src/*
 
 ## Configuration files
 In *config/* directory you can find an example of the config files for the Salesforce.com Helper ANT Tasks. These configuration files are actually the configuration by default if the files are not provided.
+
+## Building the jar files
+In order to build the jar files after modifying the project's classes there are a couple of options:
+With gradle:
+```
+# Gradle
+$ gradle fatJar
+```
+It will create the following jar file:
+```
+build/libs/sfdc_ant_tasks-all.jar
+```
+With maven:
+```
+# Maven
+$ mvn package
+```
+It will create the following jar files:
+```
+target/SalesforceAntTasks-1.0-SNAPSHOT-jar-with-dependencies.jar
+target/SalesforceAntTasks-1.0-SNAPSHOT.jar
+```
