@@ -1,0 +1,110 @@
+{
+  "profile": {
+    "applicationVisibilities": [
+      {
+        "default": "false",
+        "visible": "false"
+      }
+    ],
+    "classAccesses": [
+      { "enabled": "false" }
+    ],
+    "customPermissions": [
+      { "enabled": "false" }
+    ],
+    "externalDataSourceAccesses": [
+      { "enabled": "false" }
+    ],
+    "fieldPermissions": [
+      {
+        "editable": "false",
+        "readable": "false"
+      }
+    ],
+    "objectPermissions": [
+      {
+        "allowCreate": "false",
+        "allowDelete": "false",
+        "allowEdit": "false",
+        "allowRead": "false",
+        "modifyAllRecords": "false",
+        "viewAllRecords": "false"
+      }
+    ],
+    "pageAccesses": [
+      { "enabled": "false" }
+    ],
+    "recordTypeVisibilities": [
+      {
+        "default": "false",
+        "visible": "false"
+      }
+    ],
+    "tabVisibilities": [
+      { "visibility": "DefaultOff" }
+    ],
+    "userPermissions": [
+      { "enabled": "false" }
+    ]
+  },
+  "permissionset": {
+    "applicationVisibilities": [
+      {
+        "default": "false",
+        "visible": "false"
+      }
+    ],
+    "classAccesses": [
+      {
+        "enabled": "false"
+      }
+    ],
+    "customPermissions": [
+      {
+        "enabled": "false"
+      }
+    ],
+    "externalDataSourceAccesses": [
+      {
+        "enabled": "false"
+      }
+    ],
+    "fieldPermissions": [
+      {
+        "editable": "false",
+        "readable": "false"
+      }
+    ],
+    "objectPermissions": [
+      {
+        "allowCreate": "false",
+        "allowDelete": "false",
+        "allowEdit": "false",
+        "allowRead": "false",
+        "modifyAllRecords": "false",
+        "viewAllRecords": "false"
+      }
+    ],
+    "pageAccesses": [
+      {
+        "enabled": "false"
+      }
+    ],
+    "recordTypeVisibilities": [
+      {
+        "default": "false",
+        "visible": "false"
+      }
+    ],
+    "tabVisibilities": [
+      {
+        "visibility": "DefaultOff"
+      }
+    ],
+    "userPermissions": [
+      {
+        "enabled": "false"
+      }
+    ]
+  }
+}
