@@ -15,130 +15,36 @@
   },
   "profile": {
     "applicationVisibilities": [
-      { "application": "^.+__.+__.{1,3}$" },
-      {
-        "default": "false",
-        "visible": "false"
-      }
-    ],
-    "classAccesses": [
-      { "enabled": "false" }
-    ],
-    "customPermissions": [
-      { "enabled": "false" }
-    ],
-    "externalDataSourceAccesses": [
-      { "enabled": "false" }
+      { "application": "^.+__.+__.{1,3}$" }
     ],
     "fieldPermissions": [
-      { "field": "^(.+__.+__.{1,3}\\..+|.+\\..+__.+__.{1,3})$" },
-      {
-        "editable": "false",
-        "readable": "false"
-      }
+      { "field": "^(.+__.+__.{1,3}\\..+|.+\\..+__.+__.{1,3})$" }
     ],
     "objectPermissions": [
-      { "object": "^.+__.+__.{1,3}$" },
-      {
-        "allowCreate": "false",
-        "allowDelete": "false",
-        "allowEdit": "false",
-        "allowRead": "false",
-        "modifyAllRecords": "false",
-        "viewAllRecords": "false"
-      }
-    ],
-    "pageAccesses": [
-      { "enabled": "false" }
+      { "object": "^.+__.+__.{1,3}$" }
     ],
     "recordTypeVisibilities": [
-      { "recordType": "^(.+__.+__.{1,3}\\..+|.+\\..+__.+__.{1,3})$" },
-      {
-        "default": "false",
-        "visible": "false"
-      }
+      { "recordType": "^(.+__.+__.{1,3}\\..+|.+\\..+__.+__.{1,3})$" }
     ],
     "tabVisibilities": [
-      { "tab": "^.+__.+__.{1,3}$" },
-      { "visibility": "DefaultOff" }
-    ],
-    "userPermissions": [
-      { "enabled": "false" }
+      { "tab": "^.+__.+__.{1,3}$" }
     ]
   },
   "permissionset": {
     "applicationVisibilities": [
-      {
-        "application": "^.+__.+__.{1,3}$"
-      },
-      {
-        "default": "false",
-        "visible": "false"
-      }
-    ],
-    "classAccesses": [
-      {
-        "enabled": "false"
-      }
-    ],
-    "customPermissions": [
-      {
-        "enabled": "false"
-      }
-    ],
-    "externalDataSourceAccesses": [
-      {
-        "enabled": "false"
-      }
+      { "application": "^.+__.+__.{1,3}$" }
     ],
     "fieldPermissions": [
-      {
-        "field": "^(.+__.+__.{1,3}\\..+|.+\\..+__.+__.{1,3})$"
-      },
-      {
-        "editable": "false",
-        "readable": "false"
-      }
+      { "field": "^(.+__.+__.{1,3}\\..+|.+\\..+__.+__.{1,3})$" }
     ],
     "objectPermissions": [
-      {
-        "object": "^.+__.+__.{1,3}$"
-      },
-      {
-        "allowCreate": "false",
-        "allowDelete": "false",
-        "allowEdit": "false",
-        "allowRead": "false",
-        "modifyAllRecords": "false",
-        "viewAllRecords": "false"
-      }
-    ],
-    "pageAccesses": [
-      {
-        "enabled": "false"
-      }
+      { "object": "^.+__.+__.{1,3}$" }
     ],
     "recordTypeVisibilities": [
-      {
-        "recordType": "^(.+__.+__.{1,3}\\..+|.+\\..+__.+__.{1,3})$"
-      },
-      {
-        "default": "false",
-        "visible": "false"
-      }
+      { "recordType": "^(.+__.+__.{1,3}\\..+|.+\\..+__.+__.{1,3})$" }
     ],
     "tabVisibilities": [
-      {
-        "tab": "^.+__.+__.{1,3}$"
-      },
-      {
-        "visibility": "DefaultOff"
-      }
-    ],
-    "userPermissions": [
-      {
-        "enabled": "false"
-      }
+      { "tab": "^.+__.+__.{1,3}$" }
     ]
   }
 }
