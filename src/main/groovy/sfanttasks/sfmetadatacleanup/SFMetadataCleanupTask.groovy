@@ -21,7 +21,6 @@ class SFMetadataCleanupTask extends Task {
 	void execute() {
 		try {
 			config = ConfigHelper.getCleanupConfig(configFile)
-			def fileExtensions = config.keySet()
 			def filesMatch = '\\.' + (config.keySet() as String[]).join('|') + '\$'
 			Paths.get(srcFolder).eachFileRecurse(FileType.FILES) { file ->
 				if (file =~ /$filesMatch/) {
@@ -33,7 +32,23 @@ class SFMetadataCleanupTask extends Task {
 							def removedNodes = 0
 							config[extension].each { field, matchConfig ->
 								fileXml[field].findAll { node ->
-									node[matchConfig.field].text() =~ /${matchConfig.matches}/
+									def orMatch = false
+									for (def matcher : matchConfig) {
+										def andMatch = true
+										for (def matchEntry : matcher.entrySet()) {
+											andMatch = andMatch && (node[matchEntry.key].text() =~ /${matchEntry.value}/)
+											if (!andMatch) {
+												break
+											}
+										}
+										orMatch = orMatch || andMatch
+
+										if (orMatch) {
+											break
+										}
+									}
+
+									orMatch
 								}.each { node ->
 									removedNodes++
 									node.replaceNode {}

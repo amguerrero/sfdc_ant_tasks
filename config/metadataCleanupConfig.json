@@ -1,64 +1,144 @@
 {
-	"object": {
-		"fields": {
-			"field": "fullName",
-			"matches": "^.+__.+__.{1,3}$"
-		},
-		"validationRules": {
-			"field": "fullName",
-			"matches": "^.+__.+__.{1,3}$"
-		},
-		"webLinks": {
-			"field": "fullName",
-			"matches": "^.+__.+__.{1,3}$"
-		},
-		"listViews": {
-			"field": "fullName",
-			"matches": "^.*$"
-		}
-	},
-	"profile": {
-		"applicationVisibilities": {
-			"field": "application",
-			"matches": "^.+__.+__.{1,3}$"
-		},
-		"fieldPermissions": {
-			"field": "field",
-			"matches": "^(.+__.+__.{1,3}\\..+|.+\\..+__.+__.{1,3})$"
-		},
-		"objectPermissions": {
-			"field": "object",
-			"matches": "^.+__.+__.{1,3}$"
-		},
-		"recordTypeVisibilities": {
-			"field": "recordType",
-			"matches": "^(.+__.+__.{1,3}\\..+|.+\\..+__.+__.{1,3})$"
-		},
-		"tabVisibilities": {
-			"tab": "fullName",
-			"matches": "^.+__.+__.{1,3}$"
-		}
-	},
-	"permissionset": {
-		"applicationVisibilities": {
-			"field": "application",
-			"matches": "^.+__.+__.{1,3}$"
-		},
-		"fieldPermissions": {
-			"field": "field",
-			"matches": "^(.+__.+__.{1,3}\\..+|.+\\..+__.+__.{1,3})$"
-		},
-		"objectPermissions": {
-			"field": "object",
-			"matches": "^.+__.+__.{1,3}$"
-		},
-		"recordTypeVisibilities": {
-			"field": "recordType",
-			"matches": "^(.+__.+__.{1,3}\\..+|.+\\..+__.+__.{1,3})$"
-		},
-		"tabVisibilities": {
-			"tab": "fullName",
-			"matches": "^.+__.+__.{1,3}$"
-		}
-	}
+  "object": {
+    "fields": [
+      { "fullName": "^.+__.+__.{1,3}$" }
+    ],
+    "validationRules": [
+      { "fullName": "^.+__.+__.{1,3}$" }
+    ],
+    "webLinks": [
+      { "fullName": "^.+__.+__.{1,3}$" }
+    ],
+    "listViews": [
+      { "fullName": "^.*$" }
+    ]
+  },
+  "profile": {
+    "applicationVisibilities": [
+      { "application": "^.+__.+__.{1,3}$" },
+      {
+        "default": "false",
+        "visible": "false"
+      }
+    ],
+    "classAccesses": [
+      { "enabled": "false" }
+    ],
+    "customPermissions": [
+      { "enabled": "false" }
+    ],
+    "externalDataSourceAccesses": [
+      { "enabled": "false" }
+    ],
+    "fieldPermissions": [
+      { "field": "^(.+__.+__.{1,3}\\..+|.+\\..+__.+__.{1,3})$" },
+      {
+        "editable": "false",
+        "readable": "false"
+      }
+    ],
+    "objectPermissions": [
+      { "object": "^.+__.+__.{1,3}$" },
+      {
+        "allowCreate": "false",
+        "allowDelete": "false",
+        "allowEdit": "false",
+        "allowRead": "false",
+        "modifyAllRecords": "false",
+        "viewAllRecords": "false"
+      }
+    ],
+    "pageAccesses": [
+      { "enabled": "false" }
+    ],
+    "recordTypeVisibilities": [
+      { "recordType": "^(.+__.+__.{1,3}\\..+|.+\\..+__.+__.{1,3})$" },
+      {
+        "default": "false",
+        "visible": "false"
+      }
+    ],
+    "tabVisibilities": [
+      { "tab": "^.+__.+__.{1,3}$" },
+      { "visibility": "DefaultOff" }
+    ],
+    "userPermissions": [
+      { "enabled": "false" }
+    ]
+  },
+  "permissionset": {
+    "applicationVisibilities": [
+      {
+        "application": "^.+__.+__.{1,3}$"
+      },
+      {
+        "default": "false",
+        "visible": "false"
+      }
+    ],
+    "classAccesses": [
+      {
+        "enabled": "false"
+      }
+    ],
+    "customPermissions": [
+      {
+        "enabled": "false"
+      }
+    ],
+    "externalDataSourceAccesses": [
+      {
+        "enabled": "false"
+      }
+    ],
+    "fieldPermissions": [
+      {
+        "field": "^(.+__.+__.{1,3}\\..+|.+\\..+__.+__.{1,3})$"
+      },
+      {
+        "editable": "false",
+        "readable": "false"
+      }
+    ],
+    "objectPermissions": [
+      {
+        "object": "^.+__.+__.{1,3}$"
+      },
+      {
+        "allowCreate": "false",
+        "allowDelete": "false",
+        "allowEdit": "false",
+        "allowRead": "false",
+        "modifyAllRecords": "false",
+        "viewAllRecords": "false"
+      }
+    ],
+    "pageAccesses": [
+      {
+        "enabled": "false"
+      }
+    ],
+    "recordTypeVisibilities": [
+      {
+        "recordType": "^(.+__.+__.{1,3}\\..+|.+\\..+__.+__.{1,3})$"
+      },
+      {
+        "default": "false",
+        "visible": "false"
+      }
+    ],
+    "tabVisibilities": [
+      {
+        "tab": "^.+__.+__.{1,3}$"
+      },
+      {
+        "visibility": "DefaultOff"
+      }
+    ],
+    "userPermissions": [
+      {
+        "enabled": "false"
+      }
+    ]
+  }
 }
