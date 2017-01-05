@@ -1,6 +1,5 @@
 package sfanttasks.sfdeltadeployment
 
-import sfanttasks.helpers.ConfigHelper
 import sfanttasks.helpers.GitHelper
 import sfanttasks.packagecreator.PackageCreator
 
@@ -34,7 +33,14 @@ class SFDeltaDeploymentTask extends Task {
 					}
 
 					Files.copy(gitFilePath, deltaFilePath, StandardCopyOption.REPLACE_EXISTING)
-					//println "Copying $line to $deltaFolder"
+
+					// Check if there is a -meta.xml file, and copy it to delta dir even it didn't change
+					def gitMetaFilePath = Paths.get("${gitBaseDir}/${line}-meta.xml")
+					if (Files.exists(gitMetaFilePath)) {
+						def deltaMetaFilePath = deltaPath.resolve(Paths.get(line + "-meta.xml"))
+						println "Found Meta XML file ${gitMetaFilePath}: copying it to ${deltaMetaFilePath}"
+						Files.copy(gitMetaFilePath, deltaMetaFilePath, StandardCopyOption.REPLACE_EXISTING)
+					}
 			}
 			// Build package.xml in $deltaFolder/src using configFile if exists
 			new PackageCreator(configFile, deltaPath.resolve("src"))
