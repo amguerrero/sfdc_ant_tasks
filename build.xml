@@ -2,15 +2,15 @@
 <project name="SFDeltaDeployment" basedir="." default="cdn-invalidation">
 	<!-- Adding task definitions -->
     <taskdef name="deltaDeployment"
-    	classpath="lib/SalesforceAntTasks-1.0-SNAPSHOT-jar-with-dependencies.jar"
+    	classpath="lib/SalesforceAntTasks-with-dependencies.jar"
     	classname="sfanttasks.sfdeltadeployment.SFDeltaDeploymentTask" />
 
     <taskdef name="addNegativePermisions"
-    	classpath="libs/SalesforceAntTasks-1.0-SNAPSHOT-jar-with-dependencies.jar"
+    	classpath="libs/SalesforceAntTasks-with-dependencies.jar"
     	classname="sfanttasks.sfpermissionadjustments.SFNegativePermissionAdderTask" />
 
     <taskdef name="metadataCleanup"
-    	classpath="libs/SalesforceAntTasks-1.0-SNAPSHOT-jar-with-dependencies.jar"
+    	classpath="libs/SalesforceAntTasks-with-dependencies.jar"
     	classname="sfanttasks.sfmetadatacleanup.SFMetadataCleanupTask" />
     
     <!-- Using the new task definitions -->
