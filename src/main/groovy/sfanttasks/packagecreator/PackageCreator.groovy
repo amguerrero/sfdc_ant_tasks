@@ -1,6 +1,7 @@
 package sfanttasks.packagecreator
 
 import sfanttasks.helpers.ConfigHelper
+import sfanttasks.xml.EscapingXmlNodePrinter
 
 import java.nio.file.Path
 
@@ -95,7 +96,7 @@ class PackageCreator {
 		def packageXmlPath = srcDir.resolve("package.xml")
 		println "Writting package.xml to $packageXmlPath"
 		def sw = new StringWriter()
-		def printer = new XmlNodePrinter(new PrintWriter(sw), '    ')
+		def printer = new EscapingXmlNodePrinter(new PrintWriter(sw), '    ')
 		printer.with {
 		  preserveWhitespace = true
 		  expandEmptyElements = true

@@ -2,6 +2,7 @@ package sfanttasks.sfpermissionadjustments
 
 import sfanttasks.helpers.ConfigHelper
 import sfanttasks.helpers.GitHelper
+import sfanttasks.xml.EscapingXmlNodePrinter
 
 import java.nio.file.Path
 import java.nio.file.Paths
@@ -120,7 +121,7 @@ class SFNegativePermissionAdderTask extends Task {
 
 	private def writeXmlToFile(def xml, Path file) {
 		def sw = new StringWriter()
-		def printer = new XmlNodePrinter(new PrintWriter(sw), '    ')
+		def printer = new EscapingXmlNodePrinter(new PrintWriter(sw), '    ')
 		printer.with {
 		  preserveWhitespace = true
 		  expandEmptyElements = true

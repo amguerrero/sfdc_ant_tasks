@@ -1,6 +1,7 @@
 package sfanttasks.sfmetadatacleanup
 
 import sfanttasks.helpers.ConfigHelper
+import sfanttasks.xml.EscapingXmlNodePrinter
 
 import groovy.io.FileType
 import java.nio.file.Path
@@ -86,7 +87,7 @@ class SFMetadataCleanupTask extends Task {
 
 	private def writeXmlToFile(def xml, Path file) {
 		def sw = new StringWriter()
-		def printer = new XmlNodePrinter(new PrintWriter(sw), '    ')
+		def printer = new EscapingXmlNodePrinter(new PrintWriter(sw), '    ')
 		printer.with {
 		  preserveWhitespace = true
 		  expandEmptyElements = true
