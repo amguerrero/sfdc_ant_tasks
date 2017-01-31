@@ -1,5 +1,7 @@
 package sfanttasks.xml
 
+import groovy.xml.XmlUtil
+
 class EscapingXmlNodePrinter extends XmlNodePrinter {
    EscapingXmlNodePrinter(PrintWriter out) {
       super(out)
@@ -9,8 +11,6 @@ class EscapingXmlNodePrinter extends XmlNodePrinter {
    }
 
    void printSimpleItem(Object value) {
-      value = value.replaceAll(~/\'/, '&apos;')
-                   .replaceAll(~/\"/, '&quot;')
-      out.print(value)
-   }
+      out.print(XmlUtil.escapeXml(value))
+  }
 }
