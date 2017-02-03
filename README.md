@@ -31,6 +31,7 @@ Once we have the task defined in the build.xml, we can begin using them like thi
 ```xml
 <target name="deploy">
     <deltaDeployment deltaFolder="delta"
+        destructiveFolder="destructiveChanges"
         gitBaseDir="git_repository/sfdc_project"
         previousDeployment="v.1.0.1" />
     <addNegativePermisions srcFolder="delta"
@@ -38,10 +39,15 @@ Once we have the task defined in the build.xml, we can begin using them like thi
         previousDeployment="v.1.0.1" />
     <metadataCleanup srcFolder="delta" />
     <sf:deploy deployRoot="delta/src" ... />
+    <sf:deploy deployRoot="destructiveChanges" ... />
 </target>
 ```
 In this example, the target **deploy**:
   - Creates *delta/* directory and copies there only the files that changed between the commit tagged as v.1.0.1 and the HEAD of the current branch. It keeps salesforce package structure inside *delta/* directory. And generates the **delta/src/package.xml** file. The **gitBaseDir** attribute of deltaDeployment points to the root of the local git clone of the Salesforce project.
+  - Creates *destructiveChanges/* directory and inside it creates an empty *package.xml** and generates a **destructiveChanges.xml**. **deltaFolder** and **destructiveFolder** attributes are optional, if they are not give, by default they values are "delta" and "destructiveChanges" respectively.
+  - Adds the following properties to the ant project:
+    + **DD_DELTA_CREATED**: true if the delta directory was created, thus a normal deployment is required
+    + **DD_DESTRUCTIVE_CREATED**: true if the destructiveChanges directory was created, thus a destructive changes deployment is required
   - Adds the permissions that were removed between v.1.0.1 and the current branch HEAD to the profiles and permission sets in *delta/src/* as negative permissions. The **gitBaseDir** attribute of deltaDeployment points to the root of the local git clone of the Salesforce project.
   - Cleans up all the metadata in *delta/src/*. In this case uses the configuration by default (in short removes all the mentions to 3rd party packages -managed or not- from objects, profiles and permission sets, and the list views on the objects)
   - Finally, deploys the package we have automatically created in *delta/src/*

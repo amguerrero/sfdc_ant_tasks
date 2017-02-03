@@ -13,8 +13,8 @@ class GitHelper {
 		instance
 	}
 
-	def getFilesModifiedBetweenCommits(def commit1, def commit2) {
-		def diffTree = "git --git-dir=${gitBaseDir}/.git diff-tree --no-commit-id --name-only -r $commit1 $commit2".execute()
+	def getFilesModifiedBetweenCommits(def olderCommit, def newerCommit) {
+		def diffTree = "git --git-dir=${gitBaseDir}/.git diff-tree --no-commit-id --name-only -r $olderCommit $newerCommit".execute()
 		diffTree.waitFor()
 
 		if (diffTree.exitValue()) {
@@ -25,7 +25,7 @@ class GitHelper {
 	}
 
 	def getFilesModifiedSince(def commit) {
-		getFilesModifiedBetweenCommits("HEAD", commit)
+		getFilesModifiedBetweenCommits(commit, "HEAD")
 	}
 
 	def getPreviousVersionOf(def file, def commit) {

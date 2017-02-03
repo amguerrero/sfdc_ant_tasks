@@ -12,9 +12,12 @@ class PackageCreator {
 	private final Path srcDir
 	private final Node packageRoot
 
+	private final boolean avoidAsterisks
+
 	PackageCreator(String configFile, Path srcDir) {
 		this.config = ConfigHelper.getPackageConfig(configFile)
 		this.srcDir = srcDir
+		this.avoidAsterisks = false
 		this.packageRoot = parser.parseText("""
 <Package xmlns=\"http://soap.sforce.com/2006/04/metadata\">
     <version>${this.config.version}</version>
@@ -22,7 +25,16 @@ class PackageCreator {
 """)
 	}
 
-	void create() {
+	PackageCreator(String configFile, Path srcDir, boolean avoidAsterisks) {
+		this(configFile, srcDir)
+		this.avoidAsterisks = avoidAsterisks
+	}
+
+	void createEmpty(def packageFileName) {
+		writePackageXml(packageFileName, packageRoot)
+	}
+
+	void create(def packageFileName) {
 		println "Finding directories and files to create package.xml in $srcDir"
 		srcDir.toFile().eachDir {dir ->
 			if (config.dirs."${dir.name}") {
@@ -30,7 +42,7 @@ class PackageCreator {
 
 				println " * Found ${dir.name}: adding ${nodeConfig.xmlTag}"
 				def types = typesNode()
-				if (nodeConfig.acceptsAsterisk) {
+				if (!avoidAsterisks && nodeConfig.acceptsAsterisk) {
 					types.append membersNode("*")
 				} else {
 					if (nodeConfig.extension) {
@@ -46,7 +58,7 @@ class PackageCreator {
 			}
 		}
 
-		writePackageXml(packageRoot)
+		writePackageXml(packageFileName, packageRoot)
 	}
 
 	private def addMembersExcludePattern(def node, def dir, def excludeExtension) {
@@ -92,9 +104,9 @@ class PackageCreator {
 		node
 	}
 
-	private def writePackageXml(def xml) {
-		def packageXmlPath = srcDir.resolve("package.xml")
-		println "Writting package.xml to $packageXmlPath"
+	private def writePackageXml(def packageFileName, def xml) {
+		def packageXmlPath = srcDir.resolve(packageFileName)
+		println "Writting $packageFileName to $packageXmlPath"
 		def sw = new StringWriter()
 		def printer = new EscapingXmlNodePrinter(new PrintWriter(sw), '    ')
 		printer.with {

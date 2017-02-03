@@ -28,6 +28,7 @@
     <target name="prepareDeltaDeploymentWithConfigFiles">
         <deltaDeployment
         	deltaFolder="delta"
+            destructiveFolder="destructiveChanges"
             gitBaseDir="."
             configFile="config/packageConfig.json"
         	previousDeployment="v.1.0.1" />
