@@ -1,0 +1,11 @@
+{
+  "object": {
+    "fields": [
+      {
+        "fullName": {
+          "doesNotContain": "Not_Remove"
+        }
+      }
+    ]
+  }
+}

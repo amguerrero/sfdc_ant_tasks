@@ -1,0 +1,11 @@
+{
+  "object": {
+    "fields": [
+      {
+        "fullName": {
+          "equalTo": "Remove_Me__Right_Now__c"
+        }
+      }
+    ]
+  }
+}

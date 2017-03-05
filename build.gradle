@@ -6,6 +6,11 @@ sourceSets {
             srcDirs = ['src/main/groovy']
         }
     }
+    test {
+        groovy {
+            srcDirs = ['src/test/groovy']
+        }
+    }
 }
 
 //create a single Jar with all dependencies
@@ -24,6 +29,7 @@ repositories {
 }
 
 dependencies {
+    testCompile 'junit:junit:4.12'
     compile 'org.apache.ant:ant:1.9.7'
     compile 'org.codehaus.groovy:groovy-all:2.4.7'
 }

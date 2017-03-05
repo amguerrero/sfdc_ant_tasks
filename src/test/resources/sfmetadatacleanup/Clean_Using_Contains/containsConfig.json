@@ -1,0 +1,11 @@
+{
+  "object": {
+    "fields": [
+      {
+        "fullName": {
+          "contains": "Me__Right_Now"
+        }
+      }
+    ]
+  }
+}

@@ -55,6 +55,55 @@ In this example, the target **deploy**:
 ## Configuration files
 In *config/* directory you can find an example of the config files for the Salesforce.com Helper ANT Tasks. These configuration files are actually the configuration by default if the files are not provided.
 
+### Update for *v.0.1*
+From the version tagged **v.0.1** there is a change in how to configure the Metadata Cleanup, it will use matching operations instead of regular expressions, i.e.:
+```
+{
+  "object": {
+    "fields": [
+      { "fullName": { "isManagedPackage" : "true" } }
+    ],
+    "validationRules": [
+      { "fullName": { "startsWith" : "REMOVE_ME" } }
+    ],
+    "webLinks": [
+      { "fullName": { "endsWith" : "Delete__c" } }
+    ],
+    "listViews": [
+      { "fullName": { "always" : "" } }
+    ]
+  },
+  "profile": {
+    "applicationVisibilities": [
+      { "application": { "matches" : ".+(XXX|999).+" } },
+      {
+        "default": { "equalTo" : "false" },
+        "visible": { "equalTo" : "false" }
+      } ],
+    "objectPermissions": [
+      { "object": { "doesNotContain" : "My_Object" } }
+    ]
+  }
+}
+```
+In the example above we're configuring the metadata cleanup task to:
+   - Delete all the fields in the objects which fullName is a Managed Package added field.
+   - All the validation rules with a name starting with "REMOVE_ME" from the objects
+   - All the web links ending with "Delete__c" from the objects
+   - All the list views from the objects
+   - All the application visibilites with the name matching ".+(XXX|999).+" regular expression from the profiles
+   - All the application visiblities where default and visible are both "false" from the profiles
+   - All the object permissions whose names don't contain "My_Object" in them from the profiles.
+
+There are now the following matching operations:
+   - **matches** / **doesNotMatch**: accepts a regular expression as value, and checks if the value of the field matches or doesn't match respectively.
+   - **startsWith** / **doesNotStartWith**: accepts a string as value and checks if the field text starts (or doesn't start) with the value passed.
+   - **endsWith** / **doesNotEndWith**: accepts a string as value and checks if the field text ends (or doesn't end) with that value.
+   - **contains** / **doesNotContain**: accepts a string as value and checks if the field text contains (or doesn't contain) the value configured.
+   - **equalTo** / **notEqualTo**: accepts a string as value and checks if the field text is (or isn't) exactly equal to the value configured.
+   - **isManagedPackage**: accepts a string with the following values: **"true"** or **"false"** and checks if the field value belongs (in case the configuration is "true") or doesn't belong (in case the configured value is "false") to a managed package.
+   - **always**: needs a value, but ignores it, so it can perfectly be an empty string. It is that way to be compatible with the other operations. it will remove all the fields with this configuration.
+
 ## Building the jar files
 In order to build the jar files after modifying the project's classes there are a couple of options:
 With gradle:
