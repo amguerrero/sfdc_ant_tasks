@@ -15,7 +15,7 @@ class SFMetadataCleanupTask extends Task {
 	def srcFolder
 	def configFile
 	
-	private def config
+	private config
 	def pool = Executors.newFixedThreadPool(15)
 	def futures = []
 
@@ -23,7 +23,7 @@ class SFMetadataCleanupTask extends Task {
 		try {
 			config = ConfigHelper.getCleanupConfig(configFile)
 			def filesMatch = '\\.' + (config.keySet() as String[]).join('|') + '\$'
-			Paths.get(srcFolder).eachFileRecurse(FileType.FILES) { file ->
+			Paths.get(srcFolder).eachFileRecurse(FileType.FILES) { Path file ->
 				if (file =~ /$filesMatch/) {
 					futures << pool.submit(new Thread(new Runnable() {
 						void run() {
@@ -37,7 +37,8 @@ class SFMetadataCleanupTask extends Task {
 									for (def matcher : matchConfig) {
 										def andMatch = true
 										for (def matchEntry : matcher.entrySet()) {
-											andMatch = andMatch && (node[matchEntry.key].text() =~ /${matchEntry.value}/)
+                                            // here matchEntry.value is an object "operation" : "string to compare with"
+											andMatch = andMatch && doMatchOperations(node[matchEntry.key].text(), matchEntry.value) //node[matchEntry.key].text() =~ /${matchEntry.value}/)
 											if (!andMatch) {
 												break
 											}
@@ -58,19 +59,19 @@ class SFMetadataCleanupTask extends Task {
 
 							if (removedNodes > 0) {
 								println "$file had $removedNodes cleaned up"
-								writeXmlToFile(fileXml, file)
+								writeXmlToFile(fileXml, file as Path)
 							} else {
 								println "There was no node cleaned up in $file"
 							}
 						}
-					}))		
+					}))
 				}
 			}
 		} catch (Exception e) {
 			throw new BuildException(e)
 		}
 
-				pool.shutdown()
+		pool.shutdown()
 
 		def errors = []
 		futures.each { future ->
@@ -85,7 +86,25 @@ class SFMetadataCleanupTask extends Task {
 		        throw new RuntimeException('\n' + errors.join('\n'))
 	}
 
-	private def writeXmlToFile(def xml, Path file) {
+    private Boolean doMatchOperations(nodeValue, matchOperations) {
+        Boolean andMatch = true
+        for (def matchOperation : matchOperations.entrySet()) {
+            def operation = matchOperation.key
+            def value = matchOperation.value
+            if (MatchOperations.metaClass.respondsTo(MatchOperations.class, operation)) {
+                andMatch = andMatch && MatchOperations."$operation"(value, nodeValue)
+            } else {
+                println "WARNING!! Match operation $operation cannot be applied, so it will be ignored. This could result in unexpected items being removed."
+            }
+            if (!andMatch) {
+                break
+            }
+        }
+
+        andMatch
+    }
+
+	private writeXmlToFile(xml, Path file) {
 		def sw = new StringWriter()
 		def printer = new EscapingXmlNodePrinter(new PrintWriter(sw), '    ')
 		printer.with {

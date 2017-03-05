@@ -1,0 +1,11 @@
+{
+  "object": {
+    "fields": [
+      {
+        "fullName": {
+          "matches": "^Remove_Me__.+__.{1,3}$"
+        }
+      }
+    ]
+  }
+}
