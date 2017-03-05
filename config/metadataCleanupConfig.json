@@ -1,50 +1,50 @@
 {
   "object": {
     "fields": [
-      { "fullName": "^.+__.+__.{1,3}$" }
+      { "fullName": { "isManagedPackage" : "true" } }
     ],
     "validationRules": [
-      { "fullName": "^.+__.+__.{1,3}$" }
+      { "fullName": { "isManagedPackage" : "true" } }
     ],
     "webLinks": [
-      { "fullName": "^.+__.+__.{1,3}$" }
+      { "fullName": { "isManagedPackage" : "true" } }
     ],
     "listViews": [
-      { "fullName": "^.*$" }
+      { "fullName": { "always" : "" } }
     ]
   },
   "profile": {
     "applicationVisibilities": [
-      { "application": "^.+__.+__.{1,3}$" }
+      { "application": { "isManagedPackage" : "true" } }
     ],
     "fieldPermissions": [
-      { "field": "^(.+__.+__.{1,3}\\..+|.+\\..+__.+__.{1,3})$" }
+      { "field": { "isManagedPackage" : "true" } }
     ],
     "objectPermissions": [
-      { "object": "^.+__.+__.{1,3}$" }
+      { "object": { "isManagedPackage" : "true" } }
     ],
     "recordTypeVisibilities": [
-      { "recordType": "^(.+__.+__.{1,3}\\..+|.+\\..+__.+__.{1,3})$" }
+      { "recordType": { "isManagedPackage" : "true" } }
     ],
     "tabVisibilities": [
-      { "tab": "^.+__.+__.{1,3}$" }
+      { "tab": { "isManagedPackage" : "true" } }
     ]
   },
   "permissionset": {
     "applicationVisibilities": [
-      { "application": "^.+__.+__.{1,3}$" }
+      { "application": { "isManagedPackage" : "true" } }
     ],
     "fieldPermissions": [
-      { "field": "^(.+__.+__.{1,3}\\..+|.+\\..+__.+__.{1,3})$" }
+      { "field": { "isManagedPackage" : "true" } }
     ],
     "objectPermissions": [
-      { "object": "^.+__.+__.{1,3}$" }
+      { "object": { "isManagedPackage" : "true" } }
     ],
     "recordTypeVisibilities": [
-      { "recordType": "^(.+__.+__.{1,3}\\..+|.+\\..+__.+__.{1,3})$" }
+      { "recordType": { "isManagedPackage" : "true" } }
     ],
     "tabVisibilities": [
-      { "tab": "^.+__.+__.{1,3}$" }
+      { "tab": { "isManagedPackage" : "true" } }
     ]
   }
 }

@@ -1,143 +1,143 @@
 {
   "object": {
     "fields": [
-      { "fullName": "^.+__.+__.{1,3}$" }
+      { "fullName": { "isManagedPackage" : "true" } }
     ],
     "validationRules": [
-      { "fullName": "^.+__.+__.{1,3}$" }
+      { "fullName": { "isManagedPackage" : "true" } }
     ],
     "webLinks": [
-      { "fullName": "^.+__.+__.{1,3}$" }
+      { "fullName": { "isManagedPackage" : "true" } }
     ],
     "listViews": [
-      { "fullName": "^.*$" }
+      { "fullName": { "always" : "" } }
     ]
   },
   "profile": {
     "applicationVisibilities": [
-      { "application": "^.+__.+__.{1,3}$" },
+      { "application": { "isManagedPackage" : "true" } },
       {
-        "default": "false",
-        "visible": "false"
+        "default": { "equalTo" : "false" },
+        "visible": { "equalTo" : "false" }
       }
     ],
     "classAccesses": [
-      { "enabled": "false" }
+      { "enabled": { "equalTo" : "false" } }
     ],
     "customPermissions": [
-      { "enabled": "false" }
+      { "enabled": { "equalTo" : "false" } }
     ],
     "externalDataSourceAccesses": [
-      { "enabled": "false" }
+      { "enabled": { "equalTo" : "false" } }
     ],
     "fieldPermissions": [
-      { "field": "^(.+__.+__.{1,3}\\..+|.+\\..+__.+__.{1,3})$" },
+      { "field": { "isManagedPackage" : "true" } },
       {
-        "editable": "false",
-        "readable": "false"
+        "editable": { "equalTo" : "false" },
+        "readable": { "equalTo" : "false" }
       }
     ],
     "objectPermissions": [
-      { "object": "^.+__.+__.{1,3}$" },
+      { "object": { "isManagedPackage" : "true" } },
       {
-        "allowCreate": "false",
-        "allowDelete": "false",
-        "allowEdit": "false",
-        "allowRead": "false",
-        "modifyAllRecords": "false",
-        "viewAllRecords": "false"
+        "allowCreate": { "equalTo" : "false" },
+        "allowDelete": { "equalTo" : "false" },
+        "allowEdit": { "equalTo" : "false" },
+        "allowRead": { "equalTo" : "false" },
+        "modifyAllRecords": { "equalTo" : "false" },
+        "viewAllRecords": { "equalTo" : "false" }
       }
     ],
     "pageAccesses": [
-      { "enabled": "false" }
+      { "enabled": { "equalTo" : "false" } }
     ],
     "recordTypeVisibilities": [
-      { "recordType": "^(.+__.+__.{1,3}\\..+|.+\\..+__.+__.{1,3})$" },
+      { "recordType": { "isManagedPackage" : "true" } },
       {
-        "default": "false",
-        "visible": "false"
+        "default": { "equalTo" : "false" },
+        "visible": { "equalTo" : "false" }
       }
     ],
     "tabVisibilities": [
-      { "tab": "^.+__.+__.{1,3}$" },
-      { "visibility": "DefaultOff" }
+      { "tab": { "isManagedPackage" : "true" } },
+      { "visibility": { "isManagedPackage" : "DefaultOff" } }
     ],
     "userPermissions": [
-      { "enabled": "false" }
+      { "enabled": { "equalTo" : "false" } }
     ]
   },
   "permissionset": {
     "applicationVisibilities": [
       {
-        "application": "^.+__.+__.{1,3}$"
+        "application": { "isManagedPackage" : "true" }
       },
       {
-        "default": "false",
-        "visible": "false"
+        "default": { "equalTo" : "false" },
+        "visible": { "equalTo" : "false" }
       }
     ],
     "classAccesses": [
       {
-        "enabled": "false"
+        "enabled": { "equalTo" : "false" }
       }
     ],
     "customPermissions": [
       {
-        "enabled": "false"
+        "enabled": { "equalTo" : "false" }
       }
     ],
     "externalDataSourceAccesses": [
       {
-        "enabled": "false"
+        "enabled": { "equalTo" : "false" }
       }
     ],
     "fieldPermissions": [
       {
-        "field": "^(.+__.+__.{1,3}\\..+|.+\\..+__.+__.{1,3})$"
+        "field": { "isManagedPackage" : "true" }
       },
       {
-        "editable": "false",
-        "readable": "false"
+        "editable": { "equalTo" : "false" },
+        "readable": { "equalTo" : "false" }
       }
     ],
     "objectPermissions": [
       {
-        "object": "^.+__.+__.{1,3}$"
+        "object": { "isManagedPackage" : "true" }
       },
       {
-        "allowCreate": "false",
-        "allowDelete": "false",
-        "allowEdit": "false",
-        "allowRead": "false",
-        "modifyAllRecords": "false",
-        "viewAllRecords": "false"
+        "allowCreate": { "equalTo" : "false" },
+        "allowDelete": { "equalTo" : "false" },
+        "allowEdit": { "equalTo" : "false" },
+        "allowRead": { "equalTo" : "false" },
+        "modifyAllRecords": { "equalTo" : "false" },
+        "viewAllRecords": { "equalTo" : "false" }
       }
     ],
     "pageAccesses": [
       {
-        "enabled": "false"
+        "enabled": { "equalTo" : "false" }
       }
     ],
     "recordTypeVisibilities": [
       {
-        "recordType": "^(.+__.+__.{1,3}\\..+|.+\\..+__.+__.{1,3})$"
+        "recordType": { "isManagedPackage" : "true" }
       },
       {
-        "default": "false",
-        "visible": "false"
+        "default": { "equalTo" : "false" },
+        "visible": { "equalTo" : "false" }
       }
     ],
     "tabVisibilities": [
       {
-        "tab": "^.+__.+__.{1,3}$"
+        "tab": { "isManagedPackage" : "true" }
       },
       {
-        "visibility": "DefaultOff"
+        "visibility": { "isManagedPackage" : "DefaultOff" }
       }
     ],
     "userPermissions": [
       {
-        "enabled": "false"
+        "enabled": { "equalTo" : "false" }
       }
     ]
   }

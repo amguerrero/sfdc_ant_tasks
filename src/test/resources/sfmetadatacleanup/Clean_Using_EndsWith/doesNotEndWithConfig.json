@@ -1,0 +1,11 @@
+{
+  "object": {
+    "fields": [
+      {
+        "fullName": {
+          "doesNotEndWith": "Not_Remove__c"
+        }
+      }
+    ]
+  }
+}

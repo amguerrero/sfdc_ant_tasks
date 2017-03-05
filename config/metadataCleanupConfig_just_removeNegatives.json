@@ -2,108 +2,108 @@
   "profile": {
     "applicationVisibilities": [
       {
-        "default": "false",
-        "visible": "false"
+        "default": { "equalTo" : "false" },
+        "visible": { "equalTo" : "false" }
       }
     ],
     "classAccesses": [
-      { "enabled": "false" }
+      { "enabled": { "equalTo" : "false" } }
     ],
     "customPermissions": [
-      { "enabled": "false" }
+      { "enabled": { "equalTo" : "false" } }
     ],
     "externalDataSourceAccesses": [
-      { "enabled": "false" }
+      { "enabled": { "equalTo" : "false" } }
     ],
     "fieldPermissions": [
       {
-        "editable": "false",
-        "readable": "false"
+        "editable": { "equalTo" : "false" },
+        "readable": { "equalTo" : "false" }
       }
     ],
     "objectPermissions": [
       {
-        "allowCreate": "false",
-        "allowDelete": "false",
-        "allowEdit": "false",
-        "allowRead": "false",
-        "modifyAllRecords": "false",
-        "viewAllRecords": "false"
+        "allowCreate": { "equalTo" : "false" },
+        "allowDelete": { "equalTo" : "false" },
+        "allowEdit": { "equalTo" : "false" },
+        "allowRead": { "equalTo" : "false" },
+        "modifyAllRecords": { "equalTo" : "false" },
+        "viewAllRecords": { "equalTo" : "false" }
       }
     ],
     "pageAccesses": [
-      { "enabled": "false" }
+      { "enabled": { "equalTo" : "false" } }
     ],
     "recordTypeVisibilities": [
       {
-        "default": "false",
-        "visible": "false"
+        "default": { "equalTo" : "false" },
+        "visible": { "equalTo" : "false" }
       }
     ],
     "tabVisibilities": [
-      { "visibility": "DefaultOff" }
+      { "visibility": { "equalTo" : "DefaultOff" } }
     ],
     "userPermissions": [
-      { "enabled": "false" }
+      { "enabled": { "equalTo" : "false" } }
     ]
   },
   "permissionset": {
     "applicationVisibilities": [
       {
-        "default": "false",
-        "visible": "false"
+        "default": { "equalTo" : "false" },
+        "visible": { "equalTo" : "false" }
       }
     ],
     "classAccesses": [
       {
-        "enabled": "false"
+        "enabled": { "equalTo" : "false" }
       }
     ],
     "customPermissions": [
       {
-        "enabled": "false"
+        "enabled": { "equalTo" : "false" }
       }
     ],
     "externalDataSourceAccesses": [
       {
-        "enabled": "false"
+        "enabled": { "equalTo" : "false" }
       }
     ],
     "fieldPermissions": [
       {
-        "editable": "false",
-        "readable": "false"
+        "editable": { "equalTo" : "false" },
+        "readable": { "equalTo" : "false" }
       }
     ],
     "objectPermissions": [
       {
-        "allowCreate": "false",
-        "allowDelete": "false",
-        "allowEdit": "false",
-        "allowRead": "false",
-        "modifyAllRecords": "false",
-        "viewAllRecords": "false"
+        "allowCreate": { "equalTo" : "false" },
+        "allowDelete": { "equalTo" : "false" },
+        "allowEdit": { "equalTo" : "false" },
+        "allowRead": { "equalTo" : "false" },
+        "modifyAllRecords": { "equalTo" : "false" },
+        "viewAllRecords": { "equalTo" : "false" }
       }
     ],
     "pageAccesses": [
       {
-        "enabled": "false"
+        "enabled": { "equalTo" : "false" }
       }
     ],
     "recordTypeVisibilities": [
       {
-        "default": "false",
-        "visible": "false"
+        "default": { "equalTo" : "false" },
+        "visible": { "equalTo" : "false" }
       }
     ],
     "tabVisibilities": [
       {
-        "visibility": "DefaultOff"
+        "visibility": { "equalTo" : "DefaultOff" }
       }
     ],
     "userPermissions": [
       {
-        "enabled": "false"
+        "enabled": { "equalTo" : "false" }
       }
     ]
   }
