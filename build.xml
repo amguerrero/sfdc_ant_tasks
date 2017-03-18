@@ -9,9 +9,13 @@
     	classpath="libs/SalesforceAntTasks-with-dependencies.jar"
     	classname="sfanttasks.sfpermissionadjustments.SFNegativePermissionAdderTask" />
 
-    <taskdef name="metadataCleanup"
-    	classpath="libs/SalesforceAntTasks-with-dependencies.jar"
-    	classname="sfanttasks.sfmetadatacleanup.SFMetadataCleanupTask" />
+	<taskdef name="metadataCleanup"
+		 classpath="libs/SalesforceAntTasks-with-dependencies.jar"
+		 classname="sfanttasks.sfmetadatacleanup.SFMetadataCleanupTask" />
+
+	<taskdef name="nodeSubstitution"
+		 classpath="libs/SalesforceAntTasks-with-dependencies.jar"
+		 classname="sfanttasks.sfnodesubstitution.SFNodeSubstitutionTask" />
     
     <!-- Using the new task definitions -->
     <target name="prepareDeltaDeployment">
@@ -22,9 +26,19 @@
             gitBaseDir="."
 	    	previousDeployment="v.1.0.1" />
 	    <metadataCleanup srcFolder="delta" />
+		<nodeSubstitution srcFolder="delta">
+			<!-- always substitutes the objects fields unique attribute to 'true' -->
+			<always fileType="object" node="fields.unique" value="true" />
+			<!-- always substitutes the profiles objectPermissions allowCreate, allowDelete and fieldPermission editable to 'false' -->
+			<always fileType="profile" value="false">
+				<node>objectPermissions.allowCreate</node>
+				<node>objectPermissions.allowDelete</node>
+				<node name="fieldPermissions.editable" />
+			</always>
+		</nodeSubstitution>
     </target>
 
-    <!-- Using the new task definitions wiht config files -->
+    <!-- Using the new task definitions with config files -->
     <target name="prepareDeltaDeploymentWithConfigFiles">
         <deltaDeployment
         	deltaFolder="delta"

@@ -4,6 +4,8 @@ These are the tasks you can find in the project:
   - **Salesforce.com Delta Deployment Task**: allows you to create a directory ready to deploy just the files that are different between a git tag or commit and the HEAD of the current branch.
   - **Salesforce.com Metadata Cleanup Task**: allows you to remove some nodes from the metadata in a specific directory. The nodes to be removed can be defined by configuration files.
   - **Salesforce.com Negative Permissions Adder Task**: given you have a Salesforce.com metadata git repository in which you only store positive permissions in the profiles and permission sets and given a git commit or tag, this task adds the missing permissions to the profiles and permission sets that are going to be actually deployed as negative permissions. Thus the permissions won't be ignored when deployed.
+  - **Salesforce.com Node Substitution Task**: allows you to substitute any node value according to how it is defined in the task:
+    - *<always ... />* configures Node Substitution task to always substitute the given node or nodes values with the given value for the given typeFile. 
 
 ## Quick Usage Guide
 Ok, enough is enough, you just want to use this ANT tasks, so let's go for the prerequisites, before doing anything be aware that these ant tasks need for **Delta Deployment Task** and **Negative Permissions Adder Task**:
@@ -27,6 +29,11 @@ First we need to copy the jar file [lib/SalesforceAntTasks-with-dependencies.jar
     classpath="libs/SalesforceAntTasks-with-dependencies.jar"
     classname="sfanttasks.sfmetadatacleanup.SFMetadataCleanupTask" />
 ```
+```xml
+<taskdef name="nodeSubstitution"
+    classpath="libs/SalesforceAntTasks-with-dependencies.jar"
+    classname="sfanttasks.sfnodesubstitution.SFNodeSubstitutionTask" />
+```
 Once we have the task defined in the build.xml, we can begin using them like this:
 ```xml
 <target name="deploy">
@@ -38,6 +45,13 @@ Once we have the task defined in the build.xml, we can begin using them like thi
         gitBaseDir="git_repository/sfdc_project"
         previousDeployment="v.1.0.1" />
     <metadataCleanup srcFolder="delta" />
+    <nodeSubstitution srcFolder="delta">
+        <always fileType="profile" value="false">
+            <node>objectPermissions.allowCreate</node>
+            <node>objectPermissions.allowDelete</node>
+            <node name="fieldPermissions.editable" />
+        </always>
+    </nodeSubstitution>
     <sf:deploy deployRoot="delta/src" ... />
     <sf:deploy deployRoot="destructiveChanges" ... />
 </target>
@@ -50,6 +64,7 @@ In this example, the target **deploy**:
     + **DD_DESTRUCTIVE_CREATED**: true if the destructiveChanges directory was created, thus a destructive changes deployment is required
   - Adds the permissions that were removed between v.1.0.1 and the current branch HEAD to the profiles and permission sets in *delta/src/* as negative permissions. The **gitBaseDir** attribute of deltaDeployment points to the root of the local git clone of the Salesforce project.
   - Cleans up all the metadata in *delta/src/*. In this case uses the configuration by default (in short removes all the mentions to 3rd party packages -managed or not- from objects, profiles and permission sets, and the list views on the objects)
+  - Substitutes in the profiles on delta folder the values for the allowCreate and allowDelete object permissions and the editable field permission with false
   - Finally, deploys the package we have automatically created in *delta/src/*
 
 ## Configuration files

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomObject xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fields>
+        <fullName>New Name</fullName>
+        <externalId>another new value</externalId>
+        <formula>TRUE</formula>
+        <label>Field One</label>
+        <required>false</required>
+        <trackHistory>another new value</trackHistory>
+        <type>Text</type>
+        <unique>another new value</unique>
+    </fields>
+    <fields>
+        <fullName>New Name</fullName>
+        <externalId>another new value</externalId>
+        <formula>TRUE</formula>
+        <label>Field Two</label>
+        <required>false</required>
+        <trackHistory>another new value</trackHistory>
+        <type>Text</type>
+        <unique>another new value</unique>
+    </fields>
+    <listViews>
+        <fullName>List View One</fullName>
+        <Stuff>...</Stuff>
+    </listViews>
+    <listViews>
+        <fullName>ListView Two</fullName>
+        <Stuff>...</Stuff>
+    </listViews>
+</CustomObject>
