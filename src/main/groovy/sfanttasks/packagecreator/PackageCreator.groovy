@@ -6,16 +6,19 @@ import sfanttasks.xml.EscapingXmlNodePrinter
 import java.nio.file.Path
 
 class PackageCreator {
-	private final def config
-	private final def parser = new XmlParser(false, false, false)
+	private final config
+	private final parser = new XmlParser(false, false, false)
 
 	private final Path srcDir
 	private final Node packageRoot
 
 	private final boolean avoidAsterisks
 
-	PackageCreator(String configFile, Path srcDir) {
+	PackageCreator(String configFile, String packageVersion, Path srcDir) {
 		this.config = ConfigHelper.getPackageConfig(configFile)
+		if (packageVersion) {
+			this.config.version = packageVersion
+		}
 		this.srcDir = srcDir
 		this.avoidAsterisks = false
 		this.packageRoot = parser.parseText("""
@@ -25,8 +28,8 @@ class PackageCreator {
 """)
 	}
 
-	PackageCreator(String configFile, Path srcDir, boolean avoidAsterisks) {
-		this(configFile, srcDir)
+	PackageCreator(String configFile, String packageVersion, Path srcDir, boolean avoidAsterisks) {
+		this(configFile, packageVersion, srcDir)
 		this.avoidAsterisks = avoidAsterisks
 	}
 

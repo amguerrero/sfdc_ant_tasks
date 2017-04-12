@@ -143,7 +143,7 @@ class ConfigHelper {
     ]
 
     private static final def defaultPackageConfig = [
-            'version': '37.0',
+            'version': '39.0',
             'dirs': [
                     'applications': [
                             'xmlTag': 'CustomApplication',
@@ -222,6 +222,10 @@ class ConfigHelper {
                     ],
                     'flows': [
                             'xmlTag': 'Flow',
+                            'acceptsAsterisk': true
+                    ],
+                    'flowDefinitions': [
+                            'xmlTag': 'FlowDefinition',
                             'acceptsAsterisk': true
                     ],
                     'groups': [
