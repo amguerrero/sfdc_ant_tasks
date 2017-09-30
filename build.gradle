@@ -16,7 +16,7 @@ sourceSets {
 //create a single Jar with all dependencies
 task fatJar(type: Jar) {
     manifest {
-        attributes 'Implementation-Title': 'SF Ant Tasks‘
+        attributes 'Implementation-Title': 'SF Ant Tasks'
             //,'Main-Class': 'sfmetadataadjuster.SFMetadataAdjuster'
     }
     baseName = project.name + '-all'
