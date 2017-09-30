@@ -18,11 +18,6 @@ class SFMetadataCleanupTaskTest {
         victim = new SFMetadataCleanupTask()
     }
 	
-	@Test
-	void "Must Fail"() {
-		Assert.fail("Just Fail")
-	}
-
     @Test
     void "Default Config - From hardcoded config"() {
         // Test setup
