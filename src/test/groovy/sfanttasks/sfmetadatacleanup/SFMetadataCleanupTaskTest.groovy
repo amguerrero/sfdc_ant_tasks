@@ -20,7 +20,7 @@ class SFMetadataCleanupTaskTest {
 	
 	@Test
 	void “Must Fail”() {
-		fail(“Just Faol”)
+		Assert.fail(“Just Fail”)
 	}
 
     @Test
