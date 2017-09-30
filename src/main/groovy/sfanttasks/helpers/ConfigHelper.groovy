@@ -276,7 +276,7 @@ class ConfigHelper {
                     ],
                     'networks': [
                             'xmlTag': 'Network',
-                            'acceptsAsterisk': false
+                            'acceptsAsterisk': false,
                             'extension': '.network'
                     ],
                     'milestoneTypes': [
