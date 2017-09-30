@@ -17,6 +17,11 @@ class SFMetadataCleanupTaskTest {
     void setup() {
         victim = new SFMetadataCleanupTask()
     }
+	
+	@Test
+	void “Must Fail”() {
+		fail(“Just Faol”)
+	}
 
     @Test
     void "Default Config - From hardcoded config"() {
