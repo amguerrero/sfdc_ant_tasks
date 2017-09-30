@@ -13,6 +13,7 @@ class SFDeltaDeploymentTask extends Task {
 	def deltaFolder = "delta"
 	def destructiveFolder = "destructiveChanges"
 	def previousDeployment
+	def packageVersion
 	def configFile
 	def gitBaseDir = "."
 
@@ -64,13 +65,13 @@ class SFDeltaDeploymentTask extends Task {
 
 			if (deltaCreated) {
 				// Build package.xml in $deltaFolder/src using configFile if exists
-				new PackageCreator(configFile, deltaPath.resolve("src"))
+				new PackageCreator(configFile, packageVersion, deltaPath.resolve("src"))
 						.create("package.xml")
 			}
 
 			if (destructiveCreated) {
 				def destructiveSrcPath = destructivePath.resolve("src")
-				def packageCreator = new PackageCreator(configFile, destructiveSrcPath, true)
+				def packageCreator = new PackageCreator(configFile, packageVersion, destructiveSrcPath, true)
 
 				packageCreator.createEmpty("package.xml")
 
