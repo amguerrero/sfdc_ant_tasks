@@ -42,7 +42,16 @@ class SFDeltaDeploymentTask extends Task {
 						}
 	
 						Files.copy(gitFilePath, deltaFilePath, StandardCopyOption.REPLACE_EXISTING)
-	
+
+						// If -meta.xml file has been updated, include the file it describes
+						def pathWithoutMetaEnding = line.replace('-meta.xml', '')
+						def gitNonMetaFilePath = Paths.get("${gitBaseDir}/${pathWithoutMetaEnding}")
+						def deltaNonMetaFilePath = deltaPath.resolve(Paths.get(pathWithoutMetaEnding))
+
+						if (line.endsWith('-meta.xml') && !Files.exists(deltaNonMetaFilePath)) {
+							Files.copy(gitNonMetaFilePath, deltaNonMetaFilePath, StandardCopyOption.REPLACE_EXISTING)							
+						}
+
 						// Check if there is a -meta.xml file, and copy it to delta dir even it didn't change
 						def gitMetaFilePath = Paths.get("${gitBaseDir}/${line}-meta.xml")
 						if (Files.exists(gitMetaFilePath)) {
@@ -50,6 +59,15 @@ class SFDeltaDeploymentTask extends Task {
 							println "Found Meta XML file ${gitMetaFilePath}: copying it to ${deltaMetaFilePath}"
 							Files.copy(gitMetaFilePath, deltaMetaFilePath, StandardCopyOption.REPLACE_EXISTING)
 						}
+
+						// Include metadata files for e.g. document folders
+						def gitParentMetaFilePath = Paths.get("${gitFilePath.parent}-meta.xml")
+						def deltaParentMetaFilePath = Paths.get("${deltaFilePath.parent}-meta.xml")
+
+						if (Files.exists(gitParentMetaFilePath) && !Files.exists(deltaParentMetaFilePath)) {
+							Files.copy(gitParentMetaFilePath, deltaParentMetaFilePath, StandardCopyOption.REPLACE_EXISTING)
+						}
+						
 					} else {
 						// The file was either removed
 						destructiveCreated = true

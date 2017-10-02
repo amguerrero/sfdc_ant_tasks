@@ -143,7 +143,7 @@ class ConfigHelper {
     ]
 
     private static final def defaultPackageConfig = [
-            'version': '39.0',
+            'version': '40.0',
             'dirs': [
                     'applications': [
                             'xmlTag': 'CustomApplication',
@@ -185,12 +185,20 @@ class ConfigHelper {
                             'xmlTag': 'ApexComponent',
                             'acceptsAsterisk': true
                     ],
+                    'connectedApps': [
+                            'xmlTag': 'ConnectedApp',
+                            'acceptsAsterisk': true
+                    ],
                     'corsWhitelistOrigins': [
                             'xmlTag': 'CorsWhitelistOrigin',
                             'acceptsAsterisk': true
                     ],
                     'customApplicationComponents': [
                             'xmlTag': 'CustomApplicationComponent',
+                            'acceptsAsterisk': true
+                    ],
+                    'customMetadata': [
+                            'xmlTag': 'CustomMetadata',
                             'acceptsAsterisk': true
                     ],
                     'customPermissions': [
@@ -266,9 +274,10 @@ class ConfigHelper {
                             'xmlTag': 'MilestoneType',
                             'acceptsAsterisk': true
                     ],
-                    'pathAssistants': [
-                            'xmlTag': 'PathAssistant',
-                            'acceptsAsterisk': true
+                    'networks': [
+                            'xmlTag': 'Network',
+                            'acceptsAsterisk': false,
+                            'extension': '.network'
                     ],
                     'milestoneTypes': [
                             'xmlTag': 'MilestoneType',
@@ -285,6 +294,10 @@ class ConfigHelper {
                     ],
                     'pages': [
                             'xmlTag': 'ApexPage',
+                            'acceptsAsterisk': true
+                    ],
+                    'pathAssistants': [
+                            'xmlTag': 'PathAssistant',
                             'acceptsAsterisk': true
                     ],
                     'permissionsets': [
@@ -312,6 +325,11 @@ class ConfigHelper {
                             'xmlTag': 'QuickAction',
                             'acceptsAsterisk': true
                     ],
+                    'remoteSiteSettings': [
+                            'xmlTag': 'RemoteSiteSetting',
+                            'acceptsAsterisk': false,
+                            'extension': '.remoteSite'
+                    ],
                     'reports': [
                             'xmlTag': 'Report',
                             'acceptsAsterisk': false,
@@ -333,6 +351,14 @@ class ConfigHelper {
                             'xmlTag': 'SharingRules',
                             'acceptsAsterisk': true
                     ],
+                    'siteDotComSites': [
+                            'xmlTag': 'SiteDotCom',
+                            'acceptsAsterisk': true
+                    ],
+                    'sites': [
+                            'xmlTag': 'CustomSite',
+                            'acceptsAsterisk': true
+                    ],
                     'staticresources': [
                             'xmlTag': 'StaticResource',
                             'acceptsAsterisk': true
@@ -343,6 +369,10 @@ class ConfigHelper {
                     ],
                     'tabs': [
                             'xmlTag': 'CustomTab',
+                            'acceptsAsterisk': true
+                    ],
+                    'transactionSecurityPolicies': [
+                            'xmlTag': 'TransactionSecurityPolicy',
                             'acceptsAsterisk': true
                     ],
                     'translations': [
