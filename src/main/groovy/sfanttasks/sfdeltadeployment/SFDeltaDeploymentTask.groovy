@@ -58,6 +58,15 @@ class SFDeltaDeploymentTask extends Task {
 							println "Found Meta XML file ${gitMetaFilePath}: copying it to ${deltaMetaFilePath}"
 							Files.copy(gitMetaFilePath, deltaMetaFilePath, StandardCopyOption.REPLACE_EXISTING)
 						}
+
+						// Include metadata files for e.g. document folders
+						def gitParentMetaFilePath = Paths.get("${gitFilePath.parent}-meta.xml")
+						def deltaParentMetaFilePath = Paths.get("${deltaFilePath.parent}-meta.xml")
+
+						if (Files.exists(gitParentMetaFilePath) && !Files.exists(deltaParentMetaFilePath)) {
+							Files.copy(gitParentMetaFilePath, deltaParentMetaFilePath, StandardCopyOption.REPLACE_EXISTING)
+						}
+						
 					} else {
 						// The file was either removed
 						destructiveCreated = true
