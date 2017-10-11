@@ -13,6 +13,7 @@ class SFDeltaDeploymentTask extends Task {
 	def deltaFolder = "delta"
 	def destructiveFolder = "destructiveChanges"
 	def previousDeployment
+	def lastDeployment =  null
 	def packageVersion
 	def configFile
 	def gitBaseDir = "."
@@ -27,7 +28,13 @@ class SFDeltaDeploymentTask extends Task {
 		def deltaPath = Paths.get(deltaFolder)
 		def destructivePath = Paths.get(destructiveFolder)
 		try {
-			GitHelper.withGitBaseDir(gitBaseDir).getFilesModifiedSince(previousDeployment)
+			if (!lastDeployment) {
+				println "Last deployment commit/branch was not provided, setting it to HEAD"
+				lastDeployment = "HEAD"
+			} else {
+				println "Last deployment commit/branch set to $lastDeployment"
+			}
+			GitHelper.withGitBaseDir(gitBaseDir).getFilesModifiedBetweenCommits(previousDeployment, lastDeployment)
 				.inputStream.eachLine { line ->
 					// Each line is a file, relative to the root of the git project
 					def filePath = Paths.get(line)
